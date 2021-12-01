@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^7.0.1",
+    "tailwindcss": "^2.2.19"
+  }
+}

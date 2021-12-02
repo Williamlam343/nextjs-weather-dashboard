@@ -9,72 +9,34 @@ const numbers = "1234567890"
 const spChars = "!@#$%^&*()_+=-"
 
 const password = () => {
+    const [userPW, setUserPW] = useState("Hello World!")
+    const [pwLength, setPwLength] = useState("8")
 
     const handleCheck = (e) => {
         console.log(`${e.target.id.toUpperCase()} is checked:`, e.target.checked)
 
-        if (e.target.checked === true && e.target.id === "uppercase") {
+        if (e.target.checked && e.target.id === "uppercase") {
             passwordParams += uppercase
-        } else if (e.target.checked === false && e.target.id === "uppercase") {
-            try {
-                passwordParams = passwordParams.split("").filter(arr => { arr.includes(uppercase.split("")) })
-            } catch (error) {
-                passwordParams = ""
-            }
+        } else {
+            passwordParams = passwordParams.replace(uppercase, "")
         }
-
-        if (e.target.checked === true && e.target.id === "lowercase") {
+        if (e.target.checked && e.target.id === "lowercase") {
             passwordParams += lowercase
-        } else if (e.target.checked === false && e.target.id === "lowercase") {
-            try {
-                passwordParams = passwordParams.split("").filter(arr => { arr.includes(lowercase.split("")) })
-            } catch (error) {
-                passwordParams = ""
-            }
-        }
-
-        if (e.target.checked === true && e.target.id === "number") {
-            passwordParams += numbers
-
-        }
-        else if (e.target.checked === false && e.target.id === "number") {
-            try {
-                passwordParams = passwordParams.split("").filter(arr => { arr.includes(numbers.split("")) })
-            } catch (error) {
-                passwordParams = ""
-            }
-        }
-
-        if (e.target.checked === true && e.target.id === "spChar") {
-            passwordParams += spChars
-        } else if (e.target.checked === false && e.target.id === "spChar") {
-            try {
-                passwordParams = passwordParams.split("").filter(arr => { arr.includes(spChars.split("")) })
-            } catch (error) {
-                passwordParams = ""
-            }
+        } else {
+            passwordParams = passwordParams.replace(lowercase, passwordParams)
         }
 
 
+        console.log(passwordParams)
     }
-    const [userPW, setUserPW] = useState("Hello World!")
-    const [pwLength, setPwLength] = useState("8")
 
     const passwordGen = () => {
         let userPassword = ""
-        console.log(!passwordParams)
-        if (!passwordParams) {
-            passwordParams = lowercase
 
-        }
-        else {
-
-            for (let i = 0; i < pwLength; i++) {
-                console.log(passwordParams)
-                let index = Math.random() * passwordParams.length
-                userPassword += passwordParams.substring(index, index + 1)
-            }
-
+        for (let i = 0; i < pwLength; i++) {
+            console.log(passwordParams)
+            let index = Math.random() * passwordParams.length
+            userPassword += passwordParams.substring(index, index + 1)
         }
 
         setUserPW(userPassword)
